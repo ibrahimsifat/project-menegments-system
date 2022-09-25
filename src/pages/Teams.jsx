@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import Modal from "../components/Modal";
 import NavBar from "../components/Navigation/NavBar";
+import Modal from "../components/teams/Modal";
 import TeamCard from "../components/teams/TeamCard";
 import Error from "../components/ui/Error";
 import { useGetTeamsQuery } from "../features/teams/teamApi";
@@ -10,16 +10,17 @@ const Teams = () => {
   const [opened, setOpened] = useState(false);
   const { user } = useSelector((state) => state.auth) || {};
   const { email } = user || {};
-  console.log(email);
+
   const { data, isLoading, isError, error } = useGetTeamsQuery(email) || {};
   const { data: userTeam } = data || {};
   const controlModal = () => {
     setOpened((prevState) => !prevState);
   };
+
   // decide what to render
   let content = null;
   if (isLoading) {
-    content = <li className="m-2 text-center">Loading...</li>;
+    content = <p className="m-2 text-center">Loading...</p>;
   } else if (!isLoading && isError) {
     content = (
       <div className="m-2 text-center">
@@ -27,16 +28,9 @@ const Teams = () => {
       </div>
     );
   } else if (!isLoading && !isError && data?.length === 0) {
-    content = <li className="m-2 text-center">No Teams found!</li>;
+    content = <p className="m-2 text-center">No Teams found!</p>;
   } else if (!isLoading && !isError && data?.length > 0) {
-    content = data?.map((team) => (
-      <TeamCard
-        key={team.id}
-        teamName={team.name}
-        description={team.description}
-        color={team.color}
-      />
-    ));
+    content = data?.map((team) => <TeamCard key={team.id} team={team} />);
   }
   return (
     <>

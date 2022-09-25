@@ -6,7 +6,7 @@ import Logo from "../../images/logo.png";
 const NavBar = () => {
   const dispatch = useDispatch();
   const {
-    user: { avatar },
+    user: { avatar, name },
   } = useSelector((state) => state.auth);
 
   const logout = () => {
@@ -36,13 +36,16 @@ const NavBar = () => {
         </Link>
       </div>
       <div className="flex items-center ml-auto overflow-">
+        <span className="font-bold cursor-pointer hover:text-purple-700 mr-4">
+          {name}
+        </span>
         <img
           src={avatar}
           alt=""
           className="rounded-full w-8 h-8 mr-4 cursor-pointer"
         />
         <span
-          className="font-bold cursor-pointer hover:text-purple-700"
+          className="font-bold cursor-pointer hover:text-purple-700  "
           onClick={logout}
         >
           Logout

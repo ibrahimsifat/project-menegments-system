@@ -1,9 +1,37 @@
-import Error from "./ui/Error";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useAddTeamMutation } from "../../features/teams/teamApi";
+import Error from "../ui/Error";
 
 export default function Modal({ open, control }) {
+  const [name, setName] = useState("");
+  const { user } = useSelector((state) => state.auth) || {};
+  const { email: userEmail } = user || {};
+  const [description, setDescription] = useState("");
+  const [color, setColor] = useState("");
+
+  const [addTeam, { error }] = useAddTeamMutation();
+  const resetFrom = () => {
+    setName("");
+    setColor("");
+    setDescription("");
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    try {
+      addTeam({
+        name,
+        description,
+        color,
+        members: [userEmail],
+        author: user,
+        createdAt: new Date(),
+      });
+      control();
+      resetFrom();
+    } catch (error) {}
   };
+
   return (
     open && (
       <>
@@ -28,7 +56,8 @@ export default function Modal({ open, control }) {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                   placeholder="Team name"
-                  //   onChange={(e) => handleSearch(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div>
@@ -42,7 +71,8 @@ export default function Modal({ open, control }) {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                   placeholder="Tag Color (pink)"
-                  //   onChange={(e) => handleSearch(e.target.value)}
+                  value={color}
+                  onChange={(e) => setColor(e.target.value)}
                 />
               </div>
               <div>
@@ -56,8 +86,8 @@ export default function Modal({ open, control }) {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-violet-500 focus:border-violet-500 focus:z-10 sm:text-sm"
                   placeholder="Description"
-                  //   value={message}
-                  //   onChange={(e) => setMessage(e.target.value)}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
               </div>
             </div>
@@ -71,7 +101,7 @@ export default function Modal({ open, control }) {
               </button>
             </div>
 
-            <Error message="This user does not exist!" />
+            {error?.data && <Error message={error.data} />}
           </form>
         </div>
       </>

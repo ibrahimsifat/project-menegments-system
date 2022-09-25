@@ -1,6 +1,5 @@
 import React from "react";
-
-const TeamCard = ({ teamName, description, color }) => {
+const TeamCard = ({ team: { name, description, color, createdAt } }) => {
   return (
     <div
       className="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100"
@@ -17,13 +16,11 @@ const TeamCard = ({ teamName, description, color }) => {
         </svg>
       </button>
       <span
-        className={`flex items-center h-6 px-3 text-xs font-semibold text-${color}-500 bg-pink-100 rounded-full`}
+        className={`flex items-center h-6 px-3 text-xs font-semibold text-${color}-500 bg-${color}-100 rounded-full`}
       >
-        Design
+        {name}
       </span>
-      <h4 className="mt-3 text-sm font-medium">
-        This is the title of the card for the thing that needs to be done.
-      </h4>
+      <h4 className="mt-3 text-sm font-medium">{description}</h4>
       <div className="flex items-center w-full mt-3 text-xs font-medium text-gray-400">
         <div className="flex items-center">
           <svg
@@ -38,7 +35,10 @@ const TeamCard = ({ teamName, description, color }) => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="ml-1 leading-none">Dec 12</span>
+          <span className="ml-1 leading-none">
+            {createdAt.slice(0, 11)}
+            {/* {new Date().toUTCString().slice(0, 11)} */}
+          </span>
         </div>
       </div>
     </div>

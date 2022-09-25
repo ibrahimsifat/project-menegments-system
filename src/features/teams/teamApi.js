@@ -3,39 +3,22 @@ import { apiSlice } from "../api/apiSlice";
 export const teamsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getTeams: builder.query({
-      query: (email) => `/teams?created.email_like=${email}&_sort=timestamp`,
+      query: (email) => `/teams?members_like=${email}&_sort=timestamp`,
+      providesTags: ["Teams"],
     }),
-
+    addTeam: builder.mutation({
+      query: (data) => ({
+        url: "/teams",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Teams"],
+    }),
     // getConversation: builder.query({
     //   query: ({ userEmail, participantEmail }) =>
     //     `/conversations?participants_like=${userEmail}-${participantEmail}&&participants_like=${participantEmail}-${userEmail}`,
     // }),
-    // addConversation: builder.mutation({
-    //   query: ({ sender, data }) => ({
-    //     url: "/conversations",
-    //     method: "POST",
-    //     body: data,
-    //   }),
-    //   async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-    //     const conversation = await queryFulfilled;
-    //     if (conversation?.data?.id) {
-    //       // silent entry to message table
-    //       const users = arg.data.users;
-    //       const senderUser = users.find((user) => user.email === arg.sender);
-    //       const receiverUser = users.find((user) => user.email !== arg.sender);
 
-    //       //   dispatch(
-    //       //     messagesApi.endpoints.addMessage.initiate({
-    //       //       conversationId: conversation?.data?.id,
-    //       //       sender: senderUser,
-    //       //       receiver: receiverUser,
-    //       //       message: arg.data.message,
-    //       //       timestamp: arg.data.timestamp,
-    //       //     })
-    //       //   );
-    //     }
-    //   },
-    // }),
     // editConversation: builder.mutation({
     //   query: ({ id, data, sender }) => ({
     //     url: `/conversations/${id}`,
@@ -97,4 +80,4 @@ export const teamsApi = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useGetTeamsQuery } = teamsApi;
+export const { useGetTeamsQuery, useAddTeamMutation } = teamsApi;
