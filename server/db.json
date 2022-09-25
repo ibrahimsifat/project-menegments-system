@@ -49,7 +49,7 @@
       "description": "this is the design team. I have to make this today",
       "color": "pink",
       "members": [
-        "ibrahim@gmail.com"
+        "sumit@gmail.com"
       ],
       "author": {
         "email": "ibrahim@gmail.com",
@@ -81,10 +81,11 @@
       "description": "this is the design team. I have to make this today",
       "color": "green",
       "members": [
-        "ibrahim@gmail.com"
+        "sumit@gmail.com",
+        "saad@gmail.com"
       ],
       "author": {
-        "email": "ibrahim@gmail.com",
+        "email": "sumit@gmail.com",
         "name": "Ibrahim",
         "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
         "id": 1

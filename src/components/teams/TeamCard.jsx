@@ -1,11 +1,28 @@
-import React from "react";
-const TeamCard = ({ team: { name, description, color, createdAt } }) => {
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import EditModal from "./EditModal";
+const TeamCard = ({
+  team: { name, description, color, createdAt, author, id, members },
+}) => {
+  const { user } = useSelector((state) => state.auth) || {};
+  const { email } = user || {};
+  const [opened, setOpened] = useState(false);
+
+  const controlModal = () => {
+    setOpened((prevState) => !prevState);
+  };
+  // const controlErrorModal = () => {
+  //   setErrorOpened((prevState) => !prevState);
+  // };
   return (
     <div
       className="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100"
       draggable="true"
     >
-      <button className="absolute top-0 right-0 flex items-center justify-center hidden w-5 h-5 mt-3 mr-2 text-gray-500 rounded hover:bg-gray-200 hover:text-gray-700 group-hover:flex">
+      <button
+        className="absolute top-0 right-0 flex items-center justify-center hidden w-5 h-5 mt-3 mr-2 text-gray-500 rounded hover:bg-gray-200 hover:text-gray-700 group-hover:flex"
+        onClick={author?.email === email ? controlModal : undefined}
+      >
         <svg
           className="w-4 h-4 fill-current"
           xmlns="http://www.w3.org/2000/svg"
@@ -41,6 +58,12 @@ const TeamCard = ({ team: { name, description, color, createdAt } }) => {
           </span>
         </div>
       </div>
+      <EditModal
+        open={opened}
+        control={controlModal}
+        id={id}
+        members={members}
+      />
     </div>
   );
 };
