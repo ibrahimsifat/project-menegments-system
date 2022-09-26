@@ -22,6 +22,44 @@ export const teamsApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Teams"],
     }),
+    deleteTeam: builder.mutation({
+      query: (id) => ({
+        url: `/teams/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Teams"],
+    }),
+    updateTeam: builder.mutation({
+      query: (data) => {
+        let { id, members } = data || {};
+        let updatedTeam = {};
+        if (members?.length) updatedTeam = { ...updatedTeam, members };
+        return {
+          url: `/teams/${id}`,
+          method: "PATCH",
+          body: updatedTeam,
+        };
+      },
+
+      async onQueryStarted(arg, { queryFulfilled, dispatch, getState }) {
+        try {
+          let { data: updatedTeam } = await queryFulfilled;
+          let { email } = getState().auth?.user;
+
+          dispatch(
+            teamsApi.util.updateQueryData("getTeams", email, (draft) => {
+              return draft.map((team) =>
+                team.id === updatedTeam.id
+                  ? { ...team, members: updatedTeam.members }
+                  : team
+              );
+            })
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    }),
     // getConversation: builder.query({
     //   query: ({ userEmail, participantEmail }) =>
     //     `/conversations?participants_like=${userEmail}-${participantEmail}&&participants_like=${participantEmail}-${userEmail}`,
@@ -92,4 +130,5 @@ export const {
   useGetTeamsQuery,
   useAddTeamMutation,
   useAddTeamMemberMutation,
+  useDeleteTeamMutation,
 } = teamsApi;

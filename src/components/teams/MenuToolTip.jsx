@@ -13,7 +13,10 @@ import {
 
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useAddTeamMemberMutation } from "../../features/teams/teamApi";
+import {
+  useAddTeamMemberMutation,
+  useDeleteTeamMutation,
+} from "../../features/teams/teamApi";
 import { useGetUsersQuery } from "../../features/user/usersApi";
 
 const MenuToolTip = ({ author, id, members }) => {
@@ -40,8 +43,10 @@ const MenuToolTip = ({ author, id, members }) => {
 
   // show member modal
   const [allOpen, setAllOpen] = useState(false);
-
   const handleAllOpen = () => setAllOpen(!allOpen);
+  // delete modal
+  const [DeleteOpen, setDeleteOpen] = useState(false);
+  const handleDeleteOpen = () => setDeleteOpen(!DeleteOpen);
 
   // add member to database
 
@@ -57,6 +62,12 @@ const MenuToolTip = ({ author, id, members }) => {
       setSelectedPerson("");
       handleAllOpen();
     } catch (error) {}
+  };
+
+  // delete team
+  const [deleteTeam] = useDeleteTeamMutation();
+  const handleDeleTeam = () => {
+    deleteTeam(id);
   };
   return (
     <>
@@ -112,7 +123,7 @@ const MenuToolTip = ({ author, id, members }) => {
           </Button>
         </DialogFooter>
       </Dialog>
-      {/* </form> */}
+
       {/* see member modal */}
       <Dialog
         open={allOpen}
@@ -133,14 +144,34 @@ const MenuToolTip = ({ author, id, members }) => {
           </div>
         </DialogBody>
         <DialogFooter>
+          <Button variant="gradient" color="green" onClick={handleAllOpen}>
+            Close
+          </Button>
+        </DialogFooter>
+      </Dialog>
+
+      {/* delete team modal */}
+      <Dialog
+        open={DeleteOpen}
+        handler={handleDeleteOpen}
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
+      >
+        <DialogHeader>Are you want to delete this team.</DialogHeader>
+
+        <DialogFooter>
           <Button
             variant="text"
             color="red"
-            onClick={handleAllOpen}
+            onClick={handleDeleteOpen}
             className="mr-1"
-          ></Button>
-          <Button variant="gradient" color="green" onClick={handleAllOpen}>
-            <span>Close</span>
+          >
+            Cancel
+          </Button>
+          <Button variant="gradient" color="red" onClick={handleDeleTeam}>
+            Delete
           </Button>
         </DialogFooter>
       </Dialog>
@@ -169,7 +200,9 @@ const MenuToolTip = ({ author, id, members }) => {
           <MenuItem className="font-semibold" onClick={handleAllOpen}>
             All Members
           </MenuItem>
-          {/* <MenuItem>Menu Item 3</MenuItem> */}
+          <MenuItem className="font-semibold" onClick={handleDeleteOpen}>
+            Delete
+          </MenuItem>
         </MenuList>
       </Menu>
     </>
