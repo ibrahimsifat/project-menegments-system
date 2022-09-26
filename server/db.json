@@ -46,68 +46,51 @@
   "teams": [
     {
       "name": "Design",
-      "description": "this is the design team. I have to make this today",
+      "description": "thsi is design tema",
       "color": "pink",
       "members": [
         "sumit@gmail.com"
       ],
       "author": {
-        "email": "ibrahim@gmail.com",
-        "name": "Ibrahim",
-        "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
-        "id": 1
+        "email": "sumit@gmail.com",
+        "name": "sumit",
+        "avatar": "https://randomuser.me/api/portraits/men/92.jpg",
+        "id": 3
       },
-      "createdAt": "2022-09-25T19:57:11.408Z",
+      "createdAt": "2022-09-26T16:51:35.785Z",
       "id": 1
     },
     {
-      "name": "dev",
-      "description": "this is the design team. I have to make this today",
-      "color": "greed",
-      "members": [
-        "ibrahim@gmail.com"
-      ],
-      "author": {
-        "email": "ibrahim@gmail.com",
-        "name": "Ibrahim",
-        "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
-        "id": 1
-      },
-      "createdAt": "2022-09-25T19:57:31.728Z",
-      "id": 2
-    },
-    {
-      "name": "UI",
-      "description": "this is the design team. I have to make this today",
+      "name": "DEV",
+      "description": "thsi is dev team",
       "color": "green",
       "members": [
-        "sumit@gmail.com",
-        "saad@gmail.com"
+        "sumit@gmail.com"
       ],
       "author": {
         "email": "sumit@gmail.com",
-        "name": "Ibrahim",
-        "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
-        "id": 1
+        "name": "sumit",
+        "avatar": "https://randomuser.me/api/portraits/men/92.jpg",
+        "id": 3
       },
-      "createdAt": "2022-09-25T19:57:44.864Z",
-      "id": 3
+      "createdAt": "2022-09-26T16:51:53.729Z",
+      "id": 2
     },
     {
-      "name": "UI",
-      "description": "this is the design team. I have to make this today",
-      "color": "green",
+      "name": "asdfa",
+      "description": "asdfasdfasdfasdfasdf",
+      "color": "yellow",
       "members": [
-        "ibrahim@gmail.com"
+        "sumit@gmail.com"
       ],
       "author": {
-        "email": "ibrahim@gmail.com",
-        "name": "Ibrahim",
-        "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
-        "id": 1
+        "email": "sumit@gmail.com",
+        "name": "sumit",
+        "avatar": "https://randomuser.me/api/portraits/men/92.jpg",
+        "id": 3
       },
-      "createdAt": "2022-09-25T20:00:15.568Z",
-      "id": 4
+      "createdAt": "2022-09-26T16:55:05.952Z",
+      "id": 3
     }
   ]
 }

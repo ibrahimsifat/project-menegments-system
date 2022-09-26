@@ -6,4 +6,4 @@
 4. Deployment method এ Github নির্বাচন করুন।
 5. আপনার ব্রাঞ্চ সিলেক্ট করুন।
 6. Deploy branch এ ক্লিক করে ডেপ্লয় করুন।
-7. না বুঝতে পারলে এই ভিডিওটি দেখুন - https://learnwithsumit.com/courses/think-in-a-redux-way/how-to-deploy-server-to-heroku
+7. না বুঝতে পারলে এই ভিডিওটি দেখুন - https://ibrahimsifat.com/courses/think-in-a-redux-way/how-to-deploy-server-to-heroku

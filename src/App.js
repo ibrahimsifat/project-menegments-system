@@ -10,7 +10,6 @@ import PublicRoute from "./PublicRoute";
 
 function App() {
   const authChecked = useAuthCheck();
-
   return !authChecked ? (
     <div>Checking authentication....</div>
   ) : (
