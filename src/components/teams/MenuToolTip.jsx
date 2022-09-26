@@ -13,19 +13,19 @@ import {
 
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-const people = [
-  "Wade Cooper",
-  "Arlene McCoy",
-  "Devon Webb",
-  "Tom Cook",
-  "Tanya Fox",
-  "Hellen Schmidt",
-];
-const MenuToolTip = ({ author }) => {
+import { useAddTeamMemberMutation } from "../../features/teams/teamApi";
+import { useGetUsersQuery } from "../../features/user/usersApi";
+
+const MenuToolTip = ({ author, id, members }) => {
   const [selectedPerson, setSelectedPerson] = useState("");
   const [query, setQuery] = useState("");
   const { user } = useSelector((state) => state.auth) || {};
   const { email } = user || {};
+  const { data: users } = useGetUsersQuery() || {};
+
+  const userEmails = users?.map((user) => [user.email]).flat();
+  // const filterUserEmail = userEmails?.filter((user) => user !== email);
+  var people = userEmails?.filter((word) => !members?.includes(word));
 
   // add member modal
   const [open, setOpen] = useState(false);
@@ -35,61 +35,81 @@ const MenuToolTip = ({ author }) => {
     query === ""
       ? people
       : people.filter((person) => {
-          return person.toLowerCase().includes(query.toLowerCase());
+          return person?.toLowerCase().includes(query?.toLowerCase());
         });
 
   // show member modal
   const [allOpen, setAllOpen] = useState(false);
 
   const handleAllOpen = () => setAllOpen(!allOpen);
+
+  // add member to database
+
+  const [addTeamMember, { error }] = useAddTeamMemberMutation();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      addTeamMember({
+        id,
+        data: { members: [...members, selectedPerson] },
+      });
+    } catch (error) {}
+  };
   return (
     <>
       {/* add member modal */}
-      <Dialog
-        open={open}
-        handler={handleOpen}
-        animate={{
-          mount: { scale: 1, y: 0 },
-          unmount: { scale: 0.9, y: -100 },
-        }}
-      >
-        <DialogHeader>Add New Member</DialogHeader>
-        <DialogBody>
-          <div className="w-full">
-            <Combobox value={selectedPerson} onChange={setSelectedPerson}>
-              <Combobox.Input
-                className="border border-blue-200 w-full h-10 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-blue-500 px-3 py-2 rounded-md"
-                placeholder="Search the person"
-                onChange={(event) => setQuery(event.target.value)}
-              />
-              <Combobox.Options>
-                {filteredPeople.map((person) => (
-                  <Combobox.Option
-                    key={person}
-                    value={person}
-                    className="w-full h-10  px-3 py-2 bg-blue-50 hover:bg-gray-200 "
-                  >
-                    {person}
-                  </Combobox.Option>
-                ))}
-              </Combobox.Options>
-            </Combobox>
-          </div>
-        </DialogBody>
-        <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleOpen}
-            className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button variant="gradient" color="blue" onClick={handleOpen}>
-            <span>Add</span>
-          </Button>
-        </DialogFooter>
-      </Dialog>
+      <form onSubmit={handleSubmit}>
+        <Dialog
+          open={open}
+          handler={handleOpen}
+          animate={{
+            mount: { scale: 1, y: 0 },
+            unmount: { scale: 0.9, y: -100 },
+          }}
+        >
+          <DialogHeader>Add New Member</DialogHeader>
+          <DialogBody>
+            <div className="w-full">
+              <Combobox value={selectedPerson} onChange={setSelectedPerson}>
+                <Combobox.Input
+                  className="border border-blue-200 w-full h-10 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-blue-500 px-3 py-2 rounded-md"
+                  placeholder="Search the person"
+                  onChange={(event) => setQuery(event.target.value)}
+                />
+                <Combobox.Options>
+                  {filteredPeople?.map((person) => (
+                    <Combobox.Option
+                      key={person}
+                      value={person}
+                      className="w-full h-10  px-3 py-2 bg-blue-50 hover:bg-gray-200 "
+                    >
+                      {person}
+                    </Combobox.Option>
+                  ))}
+                </Combobox.Options>
+              </Combobox>
+            </div>
+          </DialogBody>
+          <DialogFooter>
+            <Button
+              variant="text"
+              color="red"
+              onClick={handleOpen}
+              className="mr-1"
+            >
+              <span>Cancel</span>
+            </Button>
+            <Button
+              variant="gradient"
+              color="blue"
+              type="submit"
+              onClick={handleOpen}
+            >
+              <span>Add</span>
+            </Button>
+          </DialogFooter>
+        </Dialog>
+      </form>
       {/* see member modal */}
       <Dialog
         open={allOpen}

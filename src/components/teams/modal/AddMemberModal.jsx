@@ -32,6 +32,26 @@ const AddMemberModal = () => {
       : people.filter((person) => {
           return person.toLowerCase().includes(query.toLowerCase());
         });
+
+  // // add member to database
+  // const [email, setEmail] = useState("");
+
+  // const [addTeamMember, { error }] = useAddTeamMemberMutation();
+  // const resetFrom = () => {
+  //   setEmail("");
+  // };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     addTeamMember({
+  //       id,
+  //       data: { members: [...members, email] },
+  //     });
+  //     control();
+  //     resetFrom();
+  //   } catch (error) {}
+  // };
+
   return (
     <Dialog open={open} handler={handleOpen}>
       <DialogHeader>Add New Member</DialogHeader>

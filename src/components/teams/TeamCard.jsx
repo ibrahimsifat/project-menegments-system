@@ -16,7 +16,7 @@ const TeamCard = ({
         className="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100"
         draggable="true"
       >
-        <MenuToolTip author={author} />
+        <MenuToolTip author={author} id={id} members={members} />
 
         <span
           className={`flex items-center h-6 px-3 text-xs font-semibold text-${color}-500 bg-${color}-50 rounded-full`}
