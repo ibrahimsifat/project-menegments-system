@@ -47,69 +47,72 @@ const MenuToolTip = ({ author, id, members }) => {
 
   const [addTeamMember, { error }] = useAddTeamMemberMutation();
   const handleSubmit = (e) => {
+    console.log(selectedPerson);
     e.preventDefault();
     try {
       addTeamMember({
         id,
         data: { members: [...members, selectedPerson] },
       });
+      setSelectedPerson("");
+      handleAllOpen();
     } catch (error) {}
   };
   return (
     <>
       {/* add member modal */}
-      <form onSubmit={handleSubmit}>
-        <Dialog
-          open={open}
-          handler={handleOpen}
-          animate={{
-            mount: { scale: 1, y: 0 },
-            unmount: { scale: 0.9, y: -100 },
-          }}
-        >
-          <DialogHeader>Add New Member</DialogHeader>
-          <DialogBody>
-            <div className="w-full">
-              <Combobox value={selectedPerson} onChange={setSelectedPerson}>
-                <Combobox.Input
-                  className="border border-blue-200 w-full h-10 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-blue-500 px-3 py-2 rounded-md"
-                  placeholder="Search the person"
-                  onChange={(event) => setQuery(event.target.value)}
-                />
-                <Combobox.Options>
-                  {filteredPeople?.map((person) => (
-                    <Combobox.Option
-                      key={person}
-                      value={person}
-                      className="w-full h-10  px-3 py-2 bg-blue-50 hover:bg-gray-200 "
-                    >
-                      {person}
-                    </Combobox.Option>
-                  ))}
-                </Combobox.Options>
-              </Combobox>
-            </div>
-          </DialogBody>
-          <DialogFooter>
-            <Button
-              variant="text"
-              color="red"
-              onClick={handleOpen}
-              className="mr-1"
-            >
-              <span>Cancel</span>
-            </Button>
-            <Button
-              variant="gradient"
-              color="blue"
-              type="submit"
-              onClick={handleOpen}
-            >
-              <span>Add</span>
-            </Button>
-          </DialogFooter>
-        </Dialog>
-      </form>
+      {/* <form onSubmit={handleSubmit}> */}
+      <Dialog
+        open={open}
+        handler={handleOpen}
+        animate={{
+          mount: { scale: 1, y: 0 },
+          unmount: { scale: 0.9, y: -100 },
+        }}
+      >
+        <DialogHeader>Add New Member</DialogHeader>
+        <DialogBody>
+          <div className="w-full">
+            <Combobox value={selectedPerson} onChange={setSelectedPerson}>
+              <Combobox.Input
+                className="border border-blue-200 w-full h-10 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-blue-500 px-3 py-2 rounded-md"
+                placeholder="Search the person"
+                onChange={(event) => setQuery(event.target.value)}
+              />
+              <Combobox.Options>
+                {filteredPeople?.map((person) => (
+                  <Combobox.Option
+                    key={person}
+                    value={person}
+                    className="w-full h-10  px-3 py-2 bg-blue-50 hover:bg-gray-200 "
+                  >
+                    {person}
+                  </Combobox.Option>
+                ))}
+              </Combobox.Options>
+            </Combobox>
+          </div>
+        </DialogBody>
+        <DialogFooter>
+          <Button
+            variant="text"
+            color="red"
+            onClick={handleOpen}
+            className="mr-1"
+          >
+            <span>Cancel</span>
+          </Button>
+          <Button
+            variant="gradient"
+            color="blue"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            <span>Add</span>
+          </Button>
+        </DialogFooter>
+      </Dialog>
+      {/* </form> */}
       {/* see member modal */}
       <Dialog
         open={allOpen}
@@ -119,12 +122,15 @@ const MenuToolTip = ({ author, id, members }) => {
           unmount: { scale: 0.9, y: -100 },
         }}
       >
-        <DialogHeader>Its a simple dialog.</DialogHeader>
+        <DialogHeader>Available Members.</DialogHeader>
         <DialogBody>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus ad
-          reprehenderit omnis perspiciatis aut odit! Unde architecto
-          perspiciatis, dolorum dolorem iure quia saepe autem accusamus eum
-          praesentium magni corrupti explicabo!
+          <div className="grid grid-cols-2 justify-center items-center">
+            {members.map((member) => (
+              <p className=" bg-gray-200 rounded-md m-2 p-2 " key={member}>
+                {member}
+              </p>
+            ))}
+          </div>
         </DialogBody>
         <DialogFooter>
           <Button
@@ -132,11 +138,9 @@ const MenuToolTip = ({ author, id, members }) => {
             color="red"
             onClick={handleAllOpen}
             className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
+          ></Button>
           <Button variant="gradient" color="green" onClick={handleAllOpen}>
-            <span>Confirm</span>
+            <span>Close</span>
           </Button>
         </DialogFooter>
       </Dialog>

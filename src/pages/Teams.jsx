@@ -5,6 +5,7 @@ import Modal from "../components/teams/CreateModal";
 import TeamCard from "../components/teams/TeamCard";
 import Error from "../components/ui/Error";
 import { useGetTeamsQuery } from "../features/teams/teamApi";
+import { useGetUserQuery } from "../features/user/usersApi";
 import Logo from "../images/logo.png";
 const Teams = () => {
   const [opened, setOpened] = useState(false);
@@ -12,6 +13,7 @@ const Teams = () => {
   const { email } = user || {};
 
   const { data, isLoading, isError, error } = useGetTeamsQuery(email) || {};
+  const { data: memberUser } = useGetUserQuery(email) || {};
   const { data: userTeam } = data || {};
   const controlModal = () => {
     setOpened((prevState) => !prevState);
