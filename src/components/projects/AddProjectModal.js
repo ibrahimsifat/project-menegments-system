@@ -8,7 +8,8 @@ import { useGetTeamsQuery } from "../../features/teams/teamApi";
 const AddProjectModal = ({ open, control }) => {
   const [formData, setFormData] = useState({ team: "", title: "" });
   const [addNewProject, { isLoading }] = useAddNewProjectMutation();
-  const { email: loggedInUserEmail } = useSelector((state) => state.auth.user);
+  const { user } = useSelector((state) => state.auth);
+  const { email: loggedInUserEmail } = user;
   const { data: teams } = useGetTeamsQuery(loggedInUserEmail);
 
   //custom style
@@ -43,7 +44,7 @@ const AddProjectModal = ({ open, control }) => {
     e.preventDefault();
     if (formData?.title?.trim() && formData?.team?.trim()) {
       addNewProject({
-        author: loggedInUserEmail,
+        author: user,
         team: formData?.team.toLowerCase(),
         title: formData?.title,
         stage: "backlog",

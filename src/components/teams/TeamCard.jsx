@@ -28,7 +28,7 @@ const TeamCard = ({
         <div className="flex items-center w-full mt-3 text-xs font-medium text-gray-400">
           <div className="flex items-center">
             <svg
-              className="w-4 h-4 text-gray-300 fill-current"
+              className="w-4 h-4 text-blue-700 fill-current"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -39,7 +39,7 @@ const TeamCard = ({
                 clipRule="evenodd"
               />
             </svg>
-            <span className="ml-1 leading-none font-bold">
+            <span className="ml-1 leading-none">
               {moment(createdAt).format("ll")}
             </span>
           </div>

@@ -72,7 +72,6 @@ const MenuToolTip = ({ author, id, members }) => {
   return (
     <>
       {/* add member modal */}
-      {/* <form onSubmit={handleSubmit}> */}
       <Dialog
         open={open}
         handler={handleOpen}
