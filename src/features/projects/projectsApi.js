@@ -7,7 +7,7 @@ const projectsApi = apiSlice.injectEndpoints({
         let { assignedProjectsQuery, author, sort, order } = query || {};
         let queryString = "";
         if (assignedProjectsQuery) queryString += assignedProjectsQuery;
-        if (author) query += `&author=${author}`;
+        // if (author) query += `&author=${author}`;
         if (sort) queryString += `&_sort=${sort}`;
         if (order) queryString += `&_order=${order}`;
 

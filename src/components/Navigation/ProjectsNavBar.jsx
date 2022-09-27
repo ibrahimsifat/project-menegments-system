@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { userLoggedOut } from "../../features/auth/authSlice";
 import { search } from "../../features/projects/projectsSlice";
 import Logo from "../../images/logo.png";
-const NavBar = () => {
+const ProjectsNavBar = () => {
   const dispatch = useDispatch();
   const {
     user: { avatar, name },
@@ -44,10 +44,7 @@ const NavBar = () => {
         />
       </div>
       <div className="ml-10">
-        <Link
-          className="mx-2 text-sm font-semibold text-indigo-700"
-          to="/projects"
-        >
+        <Link className="mx-2 text-sm font-bold text-indigo-600" to="/projects">
           Projects
         </Link>
         <Link
@@ -77,4 +74,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default ProjectsNavBar;

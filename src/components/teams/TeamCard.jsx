@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import MenuToolTip from "./MenuToolTip";
 const TeamCard = ({
   team: { name, description, color, createdAt, author, id, members },
+  match,
 }) => {
   const { user } = useSelector((state) => state.auth) || {};
   const { email } = user || {};
@@ -14,8 +15,9 @@ const TeamCard = ({
   return (
     <>
       <div
-        className="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100"
-        draggable="true"
+        className={`relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100  ${
+          match && "border-2 border-blue-700"
+        }`}
       >
         <MenuToolTip author={author} id={id} members={members} />
 

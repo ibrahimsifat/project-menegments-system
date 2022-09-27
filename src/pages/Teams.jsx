@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import NavBar from "../components/Navigation/NavBar";
+import NavBar from "../components/Navigation/TeamsNavBar";
 import Modal from "../components/teams/CreateModal";
 import TeamCard from "../components/teams/TeamCard";
 import Error from "../components/ui/Error";
