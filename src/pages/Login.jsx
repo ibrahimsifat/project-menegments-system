@@ -1,10 +1,10 @@
-import { Button, Input, Radio } from "@material-tailwind/react";
+import { Button, Input } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Error from "../components/ui/Error";
+import UserList from "../components/ui/UserList";
 import { useLoginMutation } from "../features/auth/authApi";
 import logoImage from "../images/logo.png";
-
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,9 +70,6 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div>
-                <Radio id="pink" name="color" color="pink" border />
-              </div>
             </div>
 
             <div>
@@ -89,6 +86,7 @@ export default function Login() {
           </form>
         </div>
       </div>
+      <UserList />
     </div>
   );
 }
