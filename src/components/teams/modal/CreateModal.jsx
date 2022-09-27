@@ -1,8 +1,8 @@
 import { Button, Input, Radio, Textarea } from "@material-tailwind/react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useAddTeamMutation } from "../../features/teams/teamApi";
-import Error from "../ui/Error";
+import { useAddTeamMutation } from "../../../features/teams/teamApi";
+import Error from "../../ui/Error";
 const colorData = [
   {
     id: "pink",
@@ -56,7 +56,7 @@ export default function Modal({ open, control }) {
   const { email: userEmail } = user || {};
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("pink");
-  // console.log(color);
+
   const [addTeam, { error, isLoading }] = useAddTeamMutation();
   const resetFrom = () => {
     setName("");
@@ -108,7 +108,7 @@ export default function Modal({ open, control }) {
                 />
               </div>
               <p className="font-bold pt-4">Select Color</p>
-              <div className="flex w-max gap-4">
+              <div className="flex w-full gap-3 flex-wrap">
                 {colorData.map((data) => {
                   const { id, color, name } = data;
                   return (

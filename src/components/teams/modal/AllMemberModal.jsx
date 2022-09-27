@@ -5,46 +5,50 @@ import {
   DialogFooter,
   DialogHeader,
 } from "@material-tailwind/react";
-import { useState } from "react";
-const AllMemberModal = () => {
-  const [allOpen, setAllOpen] = useState(false);
+import { getAvatarFromEmail } from "../../../utils/getAvatarFromEmail";
 
-  const handleAllOpen = () => setAllOpen(!allOpen);
+const AllMemberModal = ({ allOpen, handleAllOpen, members, author }) => {
   return (
-    <>
-      <Button onClick={handleAllOpen} variant="gradient">
-        Open Dialog
-      </Button>
-      <Dialog
-        open={allOpen}
-        handler={handleAllOpen}
-        animate={{
-          mount: { scale: 1, y: 0 },
-          unmount: { scale: 0.9, y: -100 },
-        }}
-      >
-        <DialogHeader>Its a simple dialog.</DialogHeader>
-        <DialogBody>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus ad
-          reprehenderit omnis perspiciatis aut odit! Unde architecto
-          perspiciatis, dolorum dolorem iure quia saepe autem accusamus eum
-          praesentium magni corrupti explicabo!
-        </DialogBody>
-        <DialogFooter>
-          <Button
-            variant="text"
-            color="red"
-            onClick={handleAllOpen}
-            className="mr-1"
-          >
-            <span>Cancel</span>
-          </Button>
-          <Button variant="gradient" color="green" onClick={handleAllOpen}>
-            <span>Confirm</span>
-          </Button>
-        </DialogFooter>
-      </Dialog>
-    </>
+    <Dialog
+      open={allOpen}
+      handler={handleAllOpen}
+      animate={{
+        mount: { scale: 1, y: 0 },
+        unmount: { scale: 0.9, y: -100 },
+      }}
+    >
+      <DialogHeader>
+        <div className="">
+          <p>Author</p>
+          <div className="w-50 bg-green-200 p-2 flex">
+            <p className=" rounded-md p-2 mr-6 -ml-16 text-center mx-auto rotate-90">
+              {author.name}
+            </p>
+            <img src={author.avatar} alt="" className="rounded" />
+          </div>
+        </div>
+      </DialogHeader>
+
+      <h1 className="font-bold text-xl ml-6">Available Members.</h1>
+      <DialogBody>
+        <div className="flex gap-4 flex-wrap justify-center items-center">
+          {members.map((member) => {
+            const { image, name } = getAvatarFromEmail(member);
+            return (
+              <div key={member} className="w-20 bg-green-200 p-2 ">
+                <p className=" rounded-md p-2 ">{name}</p>
+                <img src={image} alt="" className="rounded" />
+              </div>
+            );
+          })}
+        </div>
+      </DialogBody>
+      <DialogFooter>
+        <Button variant="gradient" color="green" onClick={handleAllOpen}>
+          Close
+        </Button>
+      </DialogFooter>
+    </Dialog>
   );
 };
 

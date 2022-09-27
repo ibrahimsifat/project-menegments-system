@@ -4,10 +4,6 @@ import MenuToolTip from "./MenuToolTip";
 const TeamCard = ({
   team: { name, description, color, createdAt, author, id, members, match },
 }) => {
-  // const controlErrorModal = () => {
-  //   setErrorOpened((prevState) => !prevState);
-  // };
-  console.log(match);
   return (
     <>
       <div

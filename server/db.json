@@ -46,24 +46,15 @@
   "teams": [
     {
       "name": "asdfasdf",
-      "description": "asdfasdfasdfasdfasdfasdf",
-      "color": "pink",
-      "members": ["sumit@gmail.com"],
-      "author": {
-        "email": "sumit@gmail.com",
-        "name": "sumit",
-        "avatar": "https://randomuser.me/api/portraits/men/92.jpg",
-        "id": 3
-      },
-      "createdAt": "2022-09-27T13:27:38.708Z",
-
-      "id": 1
-    },
-    {
-      "name": "asdfasdf",
       "description": "asdfasdfasdfasdfasdf",
       "color": "red",
-      "members": ["sumit@gmail.com"],
+      "members": [
+        "sumit@gmail.com",
+        "sifat@gmail.com",
+        "saad@gmail.com",
+        "akash@gmail.com",
+        "ibrahim@gmail.com"
+      ],
       "author": {
         "email": "sumit@gmail.com",
         "name": "sumit",
@@ -71,14 +62,15 @@
         "id": 3
       },
       "createdAt": "2022-09-27T13:29:14.313Z",
-
       "id": 2
     },
     {
       "name": "thsi ",
       "description": "this is bangladesh",
       "color": "pink",
-      "members": ["sumit@gmail.com"],
+      "members": [
+        "sumit@gmail.com"
+      ],
       "author": {
         "email": "sumit@gmail.com",
         "name": "sumit",
@@ -86,7 +78,6 @@
         "id": 3
       },
       "createdAt": "2022-09-27T13:33:52.441Z",
-
       "id": 3
     }
   ],
@@ -376,7 +367,7 @@
       },
       "team": "asdfasdf",
       "title": "hello",
-      "stage": "backlog",
+      "stage": "ready",
       "createdAt": "2022-09-27T11:45:47.258Z",
       "id": 23
     },
@@ -483,6 +474,19 @@
       "stage": "backlog",
       "createdAt": "2022-09-27T12:13:16.583Z",
       "id": 32
+    },
+    {
+      "author": {
+        "email": "sumit@gmail.com",
+        "name": "sumit",
+        "avatar": "https://randomuser.me/api/portraits/men/92.jpg",
+        "id": 3
+      },
+      "team": "thsi ",
+      "title": "this",
+      "stage": "backlog",
+      "createdAt": "2022-09-27T15:43:04.603Z",
+      "id": 33
     }
   ]
 }

@@ -21,7 +21,7 @@ const Project = ({ project }) => {
     match,
     color,
   } = project;
-  console.log(project);
+
   const { email: loggedInUserEmail } = useSelector((state) => state.auth.user);
   const [deleteProject] = useDeleteProjectMutation();
 

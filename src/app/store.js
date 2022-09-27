@@ -4,6 +4,7 @@ import { apiSlice } from "../features/api/apiSlice";
 import authSliceReducer from "../features/auth/authSlice";
 import projectReducer from "../features/projects/projectsSlice";
 import teamsSliceReducer from "../features/teams/teamSlice";
+import userReducer from "../features/user/userSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     auth: authSliceReducer,
     teams: teamsSliceReducer,
     projects: projectReducer,
+    users: userReducer,
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddlewares) =>

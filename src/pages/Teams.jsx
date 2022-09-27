@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../components/Navigation/TeamsNavBar";
-import Modal from "../components/teams/CreateModal";
+import Modal from "../components/teams/modal/CreateModal";
 import TeamCard from "../components/teams/TeamCard";
 import Error from "../components/ui/Error";
 import { useGetTeamsQuery } from "../features/teams/teamApi";
+import { useGetUsersQuery } from "../features/user/usersApi";
+import { getAllUser } from "../features/user/userSlice";
 import Logo from "../images/logo.png";
 const Teams = () => {
   const [opened, setOpened] = useState(false);
+  const dispatch = useDispatch();
+  const { data: users } = useGetUsersQuery();
   const { user } = useSelector((state) => state.auth) || {};
   const { email } = user || {};
 
@@ -16,6 +20,9 @@ const Teams = () => {
   const controlModal = () => {
     setOpened((prevState) => !prevState);
   };
+
+  // set user
+  dispatch(getAllUser(users));
 
   // search data
   const { searchString } = useSelector((state) => state.teams);
