@@ -14,6 +14,13 @@ export const teamsApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["Teams"],
     }),
+    getTeam: builder.query({
+      query: (id) => ({
+        url: `/teams${id}`,
+        method: "GET",
+      }),
+      invalidatesTags: ["Teams"],
+    }),
     addTeamMember: builder.mutation({
       query: ({ id, data }) => ({
         url: `/teams/${id}`,
@@ -60,6 +67,7 @@ export const teamsApi = apiSlice.injectEndpoints({
         }
       },
     }),
+
     // getConversation: builder.query({
     //   query: ({ userEmail, participantEmail }) =>
     //     `/conversations?participants_like=${userEmail}-${participantEmail}&&participants_like=${participantEmail}-${userEmail}`,
@@ -131,4 +139,5 @@ export const {
   useAddTeamMutation,
   useAddTeamMemberMutation,
   useDeleteTeamMutation,
+  useGetTeamQuery,
 } = teamsApi;

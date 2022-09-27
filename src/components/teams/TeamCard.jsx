@@ -1,3 +1,4 @@
+import moment from "moment";
 import React from "react";
 import { useSelector } from "react-redux";
 import MenuToolTip from "./MenuToolTip";
@@ -38,9 +39,8 @@ const TeamCard = ({
                 clipRule="evenodd"
               />
             </svg>
-            <span className="ml-1 leading-none">
-              {createdAt.slice(0, 11)}
-              {/* {new Date().toUTCString().slice(0, 11)} */}
+            <span className="ml-1 leading-none font-bold">
+              {moment(createdAt).format("ll")}
             </span>
           </div>
         </div>

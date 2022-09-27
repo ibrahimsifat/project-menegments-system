@@ -129,11 +129,33 @@
       },
       "createdAt": "2022-09-26T19:08:48.011Z",
       "id": 5
+    },
+    {
+      "name": "Design",
+      "description": "hello design and",
+      "color": "green",
+      "members": [
+        "saad@gmail.com"
+      ],
+      "author": {
+        "email": "saad@gmail.com",
+        "name": "Saad",
+        "avatar": "https://randomuser.me/api/portraits/men/4.jpg",
+        "id": 5
+      },
+      "createdAt": "2022-09-27T07:33:48.111Z",
+      "id": 6
     }
   ],
   "projects": [
     {
-      "author": "ibrahim@mail.com",
+      "author": {
+        "email": "saad@gmail.com",
+        "password": "$2a$10$RT0jOQty/yjjP4rvdMwIo../ZXBBLQhyaWKdbAcXwcQc4oGnoUVvm",
+        "name": "Saad",
+        "avatar": "https://randomuser.me/api/portraits/men/4.jpg",
+        "id": 5
+      },
       "team": "tech ",
       "title": "We are trying to solving the error",
       "stage": "backlog",
@@ -143,9 +165,9 @@
     {
       "author": "saad@gmail.com",
       "team": "deb",
-      "title": "sdasdasasd",
-      "stage": "ready",
-      "createdAt": "2022-09-26T20:45:02.024Z",
+      "title": "asdasdasd",
+      "stage": "backlog",
+      "createdAt": "2022-09-27T08:07:02.841Z",
       "id": 2
     }
   ]

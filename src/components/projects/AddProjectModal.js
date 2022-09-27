@@ -1,3 +1,4 @@
+import { Button, Input } from "@material-tailwind/react";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Select from "react-select";
@@ -10,18 +11,21 @@ const AddProjectModal = ({ open, control }) => {
   const { email: loggedInUserEmail } = useSelector((state) => state.auth.user);
   const { data: teams } = useGetTeamsQuery(loggedInUserEmail);
 
-  //custume style
+  //custom style
   const colourStyles = {
     control: (styles) => ({
       ...styles,
-      backgroundColor: "#0f172a",
-      color: "#fff",
+      backgroundColor: "#fff",
+      color: "#000",
+      marginTop: "15px",
     }),
     option: (styles) => ({
       ...styles,
-      backgroundColor: "#0f172a",
+      backgroundColor: "#fff",
+      color: "#000",
       marginTop: "-4px",
       marginBottom: "-4px",
+      fontWeight: "bold",
     }),
   };
 
@@ -37,7 +41,7 @@ const AddProjectModal = ({ open, control }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.title.trim() && formData.team.trim()) {
+    if (formData?.title?.trim() && formData?.team?.trim()) {
       addNewProject({
         author: loggedInUserEmail,
         team: formData?.team.toLowerCase(),
@@ -55,17 +59,17 @@ const AddProjectModal = ({ open, control }) => {
       <>
         <div
           onClick={control}
-          className="fixed w-full h-full inset-0 z-10 bg-slate-800 bg-opacity-80 cursor-pointer"
+          className="fixed w-full h-full inset-0 z-10 bg-slate-800 bg-opacity-80 cursor-pointer border "
         ></div>
-        <div className="rounded w-[400px] lg:w-[600px] space-y-8 bg-slate-900 p-10 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2">
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+        <div className="rounded-xl w-[400px] lg:w-[600px] space-y-8 bg-white p-10 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 border-pink-100">
+          <h2 className="mt-6 text-center text-3xl font-extrabold ">
             Add Project
           </h2>
           <form onSubmit={handleSubmit}>
-            <input
+            <Input
+              className="mb-3"
               type="text"
-              className="input input-bordered w-full max-w-full mb-2 bg-slate-900"
-              placeholder="Title"
+              label="Title"
               name="title"
               required
               onChange={handleChange}
@@ -83,13 +87,14 @@ const AddProjectModal = ({ open, control }) => {
             />
 
             <div className="text-center mt-4 flex mx-auto">
-              <button
-                className="inline-block w-auto px-6 py-3 text-white bg-blue-700 rounded-lg font-semibold text-sm mt-4 order-1"
+              <Button
                 type="submit"
-                disabled={isLoading}
+                disabled={
+                  isLoading || formData.team === "" || formData.title === ""
+                }
               >
-                Add
-              </button>
+                Add Project
+              </Button>
             </div>
           </form>
         </div>

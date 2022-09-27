@@ -4,7 +4,6 @@ import { useDrag } from "react-dnd";
 import { CgTrash } from "react-icons/cg";
 import { useSelector } from "react-redux";
 import { useDeleteProjectMutation } from "../../features/projects/projectsApi";
-import { hexToRGB } from "../../utils/hexToRGB";
 
 const Project = ({ project }) => {
   const {
@@ -19,7 +18,7 @@ const Project = ({ project }) => {
   } = project;
   const { email: loggedInUserEmail } = useSelector((state) => state.auth.user);
   const [deleteProject] = useDeleteProjectMutation();
-
+  console.log(author);
   const avatar = gravatarUrl(loggedInUserEmail, { size: 80 });
 
   const handleDeleteProject = () => {
@@ -42,7 +41,7 @@ const Project = ({ project }) => {
 
   return (
     <div
-      className={`relative flex flex-col items-start p-4 mt-3 text-white bg-slate-800 rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100 ${
+      className={`relative flex flex-col items-start p-4 mt-3 bg-white bg-slate-800 rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100 ${
         match && "border-2 border-blue-700"
       }  ${isDragging ? "opacity-50" : null}`}
       draggable="true"
@@ -60,11 +59,7 @@ const Project = ({ project }) => {
       )}
 
       <span
-        className="flex items-center h-6 px-3 text-xs font-semibold text-green-500 bg-green-100 rounded-full"
-        style={{
-          backgroundColor: hexToRGB(color, 0.2),
-          color: hexToRGB(color),
-        }}
+        className={`flex items-center h-6 px-3 text-xs font-semibold text-green-500 bg-green-100 rounded-full bg-${color}-100 text-${color}-500`}
       >
         {teamName}
       </span>
@@ -87,7 +82,11 @@ const Project = ({ project }) => {
             {moment(createdAt).format("ll")}
           </span>
         </div>
-        <img className="w-6 h-6 ml-auto rounded-full" src={avatar} alt="" />
+        <img
+          className="w-6 h-6 ml-auto rounded-full"
+          src={author.avatar}
+          alt=""
+        />
       </div>
     </div>
   );

@@ -2,9 +2,8 @@ import React from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import NavBar from "../components/Navigation/NavBar";
 import ProjectsBoard from "../components/projects/ProjectsBoard";
-import Avatar from "../components/ui/Avatar";
 import { search } from "../features/projects/projectsSlice";
 
 const Projects = () => {
@@ -25,8 +24,8 @@ const Projects = () => {
   };
 
   return (
-    <div class="flex flex-col h-screen overflow-auto text-white bg-gradient-to-tr from-slate-900 via-slate-900 to-slate-800">
-      <div className="flex justify-between items-center flex-shrink-0 w-full h-16 px-10 bg-opacity-75">
+    <div class="flex flex-col w-screen h-screen overflow-auto text-gray-700 bg-gradient-to-tr from-blue-200 via-indigo-200 to-pink-200">
+      {/* <div className="flex justify-between items-center flex-shrink-0 w-full h-16 px-10 bg-opacity-75">
         <div className="flex gap-6 items-center">
           <img
             src="https://raw.githubusercontent.com/Learn-with-Sumit/think-in-a-redux-way/13.1/html_template/images/logo.png"
@@ -53,8 +52,8 @@ const Projects = () => {
           />
         </div>
         <Avatar />
-      </div>
-
+      </div> */}
+      <NavBar />
       <div class="px-10 mt-6">
         <h1 class="text-2xl font-bold">Project Board</h1>
       </div>
