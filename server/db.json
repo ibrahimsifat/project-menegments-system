@@ -45,101 +45,49 @@
   ],
   "teams": [
     {
-      "name": "Design",
-      "description": "thsi is design tema",
+      "name": "asdfasdf",
+      "description": "asdfasdfasdfasdfasdfasdf",
       "color": "pink",
-      "members": [
-        "sumit@gmail.com"
-      ],
+      "members": ["sumit@gmail.com"],
       "author": {
         "email": "sumit@gmail.com",
         "name": "sumit",
         "avatar": "https://randomuser.me/api/portraits/men/92.jpg",
         "id": 3
       },
-      "createdAt": "2022-09-26T16:51:35.785Z",
+      "createdAt": "2022-09-27T13:27:38.708Z",
+
       "id": 1
     },
     {
-      "name": "DEV",
-      "description": "thsi is dev team",
-      "color": "green",
-      "members": [
-        "sumit@gmail.com"
-      ],
+      "name": "asdfasdf",
+      "description": "asdfasdfasdfasdfasdf",
+      "color": "red",
+      "members": ["sumit@gmail.com"],
       "author": {
         "email": "sumit@gmail.com",
         "name": "sumit",
         "avatar": "https://randomuser.me/api/portraits/men/92.jpg",
         "id": 3
       },
-      "createdAt": "2022-09-26T16:51:53.729Z",
+      "createdAt": "2022-09-27T13:29:14.313Z",
+
       "id": 2
     },
     {
-      "name": "asdfa",
-      "description": "asdfasdfasdfasdfasdf",
-      "color": "yellow",
-      "members": [
-        "sumit@gmail.com"
-      ],
+      "name": "thsi ",
+      "description": "this is bangladesh",
+      "color": "pink",
+      "members": ["sumit@gmail.com"],
       "author": {
         "email": "sumit@gmail.com",
         "name": "sumit",
         "avatar": "https://randomuser.me/api/portraits/men/92.jpg",
         "id": 3
       },
-      "createdAt": "2022-09-26T16:55:05.952Z",
+      "createdAt": "2022-09-27T13:33:52.441Z",
+
       "id": 3
-    },
-    {
-      "name": "Design",
-      "description": "hello design and",
-      "color": "green",
-      "members": [
-        "saad@gmail.com"
-      ],
-      "author": {
-        "email": "saad@gmail.com",
-        "name": "Saad",
-        "avatar": "https://randomuser.me/api/portraits/men/4.jpg",
-        "id": 5
-      },
-      "createdAt": "2022-09-27T07:33:48.111Z",
-      "id": 6
-    },
-    {
-      "name": "thsiis bangladesh ",
-      "description": "asldkf  ;alsdk ;alskdfj",
-      "color": "red",
-      "members": [
-        "ibrahim@gmail.com",
-        "sumit@gmail.com"
-      ],
-      "author": {
-        "email": "ibrahim@gmail.com",
-        "name": "Ibrahim",
-        "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
-        "id": 1
-      },
-      "createdAt": "2022-09-27T11:37:56.934Z",
-      "id": 7
-    },
-    {
-      "name": "asdfasdf",
-      "description": "sadfasdfadfa adsfa",
-      "color": "purple",
-      "members": [
-        "ibrahim@gmail.com"
-      ],
-      "author": {
-        "email": "ibrahim@gmail.com",
-        "name": "Ibrahim",
-        "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
-        "id": 1
-      },
-      "createdAt": "2022-09-27T11:38:21.535Z",
-      "id": 8
     }
   ],
   "projects": [

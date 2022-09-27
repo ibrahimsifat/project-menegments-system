@@ -1,17 +1,13 @@
 import moment from "moment";
 import React from "react";
-import { useSelector } from "react-redux";
 import MenuToolTip from "./MenuToolTip";
 const TeamCard = ({
-  team: { name, description, color, createdAt, author, id, members },
-  match,
+  team: { name, description, color, createdAt, author, id, members, match },
 }) => {
-  const { user } = useSelector((state) => state.auth) || {};
-  const { email } = user || {};
-
   // const controlErrorModal = () => {
   //   setErrorOpened((prevState) => !prevState);
   // };
+  console.log(match);
   return (
     <>
       <div
@@ -45,6 +41,11 @@ const TeamCard = ({
               {moment(createdAt).format("ll")}
             </span>
           </div>
+          <img
+            className="w-6 h-6 ml-auto rounded-full"
+            src={author.avatar}
+            alt=""
+          />
         </div>
       </div>{" "}
     </>

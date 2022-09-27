@@ -5,7 +5,6 @@ import Modal from "../components/teams/CreateModal";
 import TeamCard from "../components/teams/TeamCard";
 import Error from "../components/ui/Error";
 import { useGetTeamsQuery } from "../features/teams/teamApi";
-import { useGetUserQuery } from "../features/user/usersApi";
 import Logo from "../images/logo.png";
 const Teams = () => {
   const [opened, setOpened] = useState(false);
@@ -13,11 +12,24 @@ const Teams = () => {
   const { email } = user || {};
 
   const { data, isLoading, isError, error } = useGetTeamsQuery(email) || {};
-  const { data: memberUser } = useGetUserQuery(email) || {};
-  const { data: userTeam } = data || {};
+
   const controlModal = () => {
     setOpened((prevState) => !prevState);
   };
+
+  // search data
+  const { searchString } = useSelector((state) => state.teams);
+  const { data: teams } = useGetTeamsQuery(email);
+
+  let searchedTeams;
+
+  searchString.length > 1
+    ? (searchedTeams = teams?.map((team) =>
+        team.description?.split(" ").join("")?.includes(searchString)
+          ? { ...team, match: true }
+          : { ...team, match: false }
+      ))
+    : (searchedTeams = data);
 
   // decide what to render
   let content = null;
@@ -32,7 +44,9 @@ const Teams = () => {
   } else if (!isLoading && !isError && data?.length === 0) {
     content = <p className="m-2 text-center">No Teams found!</p>;
   } else if (!isLoading && !isError && data?.length > 0) {
-    content = data?.map((team) => <TeamCard key={team.id} team={team} />);
+    content = searchedTeams?.map((team) => (
+      <TeamCard key={team.id} team={team} />
+    ));
   }
   return (
     <>

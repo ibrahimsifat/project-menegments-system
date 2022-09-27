@@ -17,7 +17,6 @@ const projectsApi = apiSlice.injectEndpoints({
       },
       providesTags: ["Projects"],
     }),
-
     addNewProject: builder.mutation({
       query: (data) => ({
         url: "/projects",
